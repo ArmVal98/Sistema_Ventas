@@ -21,20 +21,21 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
+        
         private Thread workerThread = null;
 
         private void Login_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void iniciarSesion()
+      
+        public void iniciarSesion()
         {
             List<Usuario> test = new CN_Usuario().Listar();
 
             string usuarioLogin = textBoxUsuario.Text;
-            string claveLogin = Encriptar.GetMD5(textBoxClave.Text);
+            string claveLogin = textBoxClave.Text;
+            //string claveLogin = Encriptar.GetMD5(textBoxClave.Text);
 
             Usuario oUsuario = new CN_Usuario().Listar().Where(u => u.usuario_login.ToString() == usuarioLogin && u.clave == claveLogin).FirstOrDefault();
 
@@ -47,12 +48,16 @@ namespace CapaPresentacion
                 this.Hide();
 
                 form.FormClosing += cerrarFormulario;
+
+                UsuarioLogin.usuarioLogueado = oUsuario.usuario_login;
             }
             else
             {
                 MessageBox.Show("Favor de ingresar un usuario y contraseña válido", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+       
+
         
         private void cerrarFormulario(object sender, FormClosingEventArgs e)
         {
@@ -64,6 +69,14 @@ namespace CapaPresentacion
 
         private void textBoxUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                if (!char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+
             if (e.KeyChar == Convert.ToChar(Keys.Enter)) 
                 textBoxClave.Focus();
         }

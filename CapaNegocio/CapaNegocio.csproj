@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CN_Permiso.cs" />
+    <Compile Include="CN_Rol.cs" />
     <Compile Include="CN_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +54,10 @@
     <ProjectReference Include="..\CapaEntidad\CapaEntidad.csproj">
       <Project>{4ea941bf-0cbb-4ad1-9bd9-4d2a8638221c}</Project>
       <Name>CapaEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{0c478066-c37f-43ee-adcf-ebbeef92ce23}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
