@@ -61,6 +61,8 @@ namespace CapaPresentacion
             comboBoxBusqueda.ValueMember = "valor";
             comboBoxBusqueda.SelectedIndex = 1;
 
+            textBoxUsuario.MaxLength = 4;
+
             cargarDatosUsuarios();
         }
 
@@ -584,10 +586,12 @@ namespace CapaPresentacion
             {
                 dataGridViewData.Rows.Clear();
                 cargarDatosUsuarios();
+                
             }
             else
             {
                 buscarUsuario();
+                filtrarUsuariosActivos();
             }
         }
         //BOTONES

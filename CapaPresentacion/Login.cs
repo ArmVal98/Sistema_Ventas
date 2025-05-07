@@ -26,9 +26,9 @@ namespace CapaPresentacion
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            textBoxUsuario.MaxLength = 4;
         }
-      
+
         public void iniciarSesion()
         {
             List<Usuario> test = new CN_Usuario().Listar();
@@ -41,19 +41,25 @@ namespace CapaPresentacion
 
             if (oUsuario != null)
             {
-                Inicio form = new Inicio(oUsuario);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    Inicio form = new Inicio(oUsuario);
 
-                form.Show();
+                    form.Show();
 
-                this.Hide();
+                    this.Hide();
 
-                form.FormClosing += cerrarFormulario;
+                    form.FormClosing += cerrarFormulario;
 
-                UsuarioLogin.usuarioLogueado = oUsuario.usuario_login;
+                    UsuarioLogin.usuarioLogueado = oUsuario.usuario_login;
+                });
             }
             else
             {
-                MessageBox.Show("Favor de ingresar un usuario y contraseña válido", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show("Favor de ingresar un usuario y contraseña válido", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                });
             }
         }
        

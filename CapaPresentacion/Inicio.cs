@@ -138,7 +138,7 @@ namespace CapaPresentacion
 
         private void subMenuUtilidades_Click(object sender, EventArgs e)
         {
-            abrirFormulario(menuDesarrollo, new frmUtilidades());
+            abrirFormulario(menuUtilidades, new frmUtilidades());
         }
     }
 }
